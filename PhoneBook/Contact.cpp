@@ -2,7 +2,6 @@
 
 
 
-
 Contact::Contact() : Name(""), phoneNum("00"), email("Unknown"), address("Unknown")
 {}
 
@@ -69,18 +68,31 @@ void Contact::printContacts()
 
 	contactFile.read((char*)this, sizeof(Contact));
 
+	int count = 0;
+	vector<string> names;
+
 	if (contactFile.good())
 	{
 		while (!contactFile.eof())
 		{
-			cout << "\t\t--------------------------------------------------------\n";
-			cout << "\t\t\t\t\t" << Name << std::endl;
-			cout << "\t\t--------------------------------------------------------\n";
-
+			names.push_back(Name);
 			contactFile.read((char*)this, sizeof(Contact));
 		}
 
+		sort(names.begin(), names.end());
+
+		for (size_t i = 0; i < names.size(); i++)
+		{
+			cout << "\t\t\t\t\t" << names[i] << '\n';
+			cout << "\t\t--------------------------------------------------------\n";
+
+			count++;
+		}
+		
 		contactFile.close();
+
+		cout << "\t\t\t\t\t" << count << " contacts\n";
+		cout << "\t\t--------------------------------------------------------\n";
 	}
 	else if (Name == "")
 	{
@@ -91,8 +103,8 @@ void Contact::printContacts()
 	{
 		cout << "\n\t\t\tError occurred in opening the file\n";
 	}
-
 }
+
 
 void Contact::contactOptions(string tmpName)
 {
@@ -119,6 +131,7 @@ void Contact::contactOptions(string tmpName)
 		break;
 	}
 }
+
 
 void Contact::updateContact(string tmpName)
 {
@@ -261,7 +274,6 @@ void Contact::searchContact()
 		_getch();
 	}
 }
-
 
 
 bool Contact::isExist(string tmpName)

@@ -14,5 +14,6 @@ public:
 
 	void printRecord();
 
+	void removeAll();
 };
 

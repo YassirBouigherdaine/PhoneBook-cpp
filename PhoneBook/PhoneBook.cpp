@@ -15,10 +15,12 @@ void PhoneBook::menu()
 		cout << "\t\t*                       CONTACTS                      *\n";
 		cout << "\t\t**                                                   **\n";
 		cout << "\t\t*******************************************************\n\n";
-	
+
+		cout << "\n\t\t   [1] Create contact \t[2] Search \t [3] Exit\n\n";
+		cout << "\t\t--------------------------------------------------------\n";
+
 		contact.printContacts();
 
-		cout << "\n\t\t\t[1] Create contact \t [2] Search\n\n";
 		cout << "\n\t\t\t>Your choice: ";
 		cin >> ch;
 
@@ -28,6 +30,9 @@ void PhoneBook::menu()
 			break;
 
 		case 2: printRecord();
+			break;
+
+		case 3: exit(1);
 			break;
 
 		default: cout << "\n\t\t\t Invalid choice";
@@ -43,7 +48,6 @@ void PhoneBook::creatContact()
 {
 	contact.addContact();
 }
-
 
 void PhoneBook::printRecord()
 {
